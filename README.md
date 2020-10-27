@@ -14,10 +14,7 @@ hiBox is C utilities library for HybridOS. It is derived from libubox of OpenWRT
 
 ## Copying
 
-Copyright (c) 2020 FMSoft <https://www.fmsoft.cn>
-Copyright (c) 2009-2017 Dave Gamble and cJSON contributors
-Copyright (C) 2010 Steven Barth <steven@midlink.org>
-Copyright (C) 2011-2012 Felix Fietkau <nbd@openwrt.org>
+Copyright (c) 2020 FMSoft (<https://www.fmsoft.cn>) and others 
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
