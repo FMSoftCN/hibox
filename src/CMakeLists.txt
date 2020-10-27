@@ -4,7 +4,7 @@ INCLUDE(CheckFunctionExists)
 ADD_DEFINITIONS(-Wall -Werror)
 IF(CMAKE_C_COMPILER_VERSION VERSION_GREATER 6)
 	ADD_DEFINITIONS(-Wextra -Werror=implicit-function-declaration)
-	ADD_DEFINITIONS(-Wformat -Werror=format-security -Werror=format-nonliteral)
+	ADD_DEFINITIONS(-Wformat -Werror=format-security)
 ENDIF()
 ADD_DEFINITIONS(-Os -std=gnu99 -g3 -Wmissing-declarations -Wno-unused-parameter)
 
@@ -13,7 +13,10 @@ INCLUDE(FindPkgConfig)
 SET(SOURCES avl.c avl-cmp.c blob.c blobmsg.c vlist.c kvlist.c utils.c safe_list.c runqueue.c
         md5.c base64.c
         uloop.c usock.c ustream.c ustream-fd.c ulog.c
-        cjson.c blobmsg_json.c json_script.c)
+        json-c/arraylist.c json-c/json_c_version.c json-c/json_object_iterator.c json-c/json_tokener.c
+        json-c/json_visit.c json-c/printbuf.c json-c/strerror_override.c json-c/debug.c json-c/json_object.c
+        json-c/json_pointer.c json-c/json_util.c json-c/linkhash.c json-c/random_seed.c
+        blobmsg_json.c json_script.c)
 
 ADD_LIBRARY(hibox SHARED ${SOURCES})
 ADD_LIBRARY(hibox-static STATIC ${SOURCES})
@@ -28,9 +31,11 @@ IF(NOT HAVE_GETTIME)
 	ENDIF()
 ENDIF()
 
-FILE(GLOB headers *.h)
+FILE(GLOB headers *.h
+    json-c/arraylist.h json-c/debug.h json-c/json_c_version.h json-c/json_object.h
+    json-c/json_object_iterator.h json-c/json_pointer.h json-c/json_tokener.h json-c/json_util.h json-c/linkhash.h)
 INSTALL(FILES ${headers}
-	DESTINATION include/libhibox
+	DESTINATION include/hibox
 )
 INSTALL(TARGETS hibox hibox-static
 	ARCHIVE DESTINATION lib
