@@ -114,8 +114,6 @@ JSON_EXPORT int json_parse_double(const char *buf, double *retval);
  */
 JSON_EXPORT const char *json_type_to_name(enum json_type o_type);
 
-void _json_c_set_last_err(const char *err_fmt, ...);
-
 #ifdef __cplusplus
 }
 #endif
