@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.6)
 
 IF (BUILD_EXAMPLES)
-    PROJECT(ubox-examples C)
+    PROJECT(hibox-examples C)
     ADD_DEFINITIONS(-O1 -Wall -Werror --std=gnu99 -g3)
 
     INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/..)
@@ -10,8 +10,8 @@ IF (BUILD_EXAMPLES)
     FIND_LIBRARY(json NAMES json-c json)
 
     ADD_EXECUTABLE(ustream-example ustream-example.c)
-    TARGET_LINK_LIBRARIES(ustream-example ubox)
+    TARGET_LINK_LIBRARIES(ustream-example hibox)
 
     ADD_EXECUTABLE(json_script-example json_script-example.c)
-    TARGET_LINK_LIBRARIES(json_script-example ubox blobmsg_json json_script ${json})
+    TARGET_LINK_LIBRARIES(json_script-example hibox)
 ENDIF()
