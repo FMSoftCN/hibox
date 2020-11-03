@@ -11,7 +11,7 @@ ADD_DEFINITIONS(-Os -std=gnu99 -g3 -Wmissing-declarations -Wno-unused-parameter)
 INCLUDE(FindPkgConfig)
 
 SET(SOURCES gslist.c avl.c avl-cmp.c blob.c blobmsg.c vlist.c kvlist.c utils.c safe_list.c runqueue.c
-        md5.c base64.c sha1.c
+        md5.c base64.c base64-alloc.c sha1.c
         uloop.c usock.c ustream.c ustream-fd.c ulog.c
         json-c/arraylist.c json-c/json_c_version.c json-c/json_object_iterator.c json-c/json_tokener.c
         json-c/json_visit.c json-c/printbuf.c json-c/strerror_override.c json-c/debug.c json-c/json_object.c
