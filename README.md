@@ -1,7 +1,7 @@
 # hiBox 
 
 hiBox is a utilities library for HybridOS in C language. It is derived from
-libubox of OpenWRT, and integrats json-c (MIT licensed) and other utilities
+libubox of OpenWRT, and integrates json-c (MIT licensed) and other utilities
 from open source community.
 
 - [Introduction](#introduction)
