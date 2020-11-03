@@ -226,6 +226,8 @@ int clock_gettime(int type, struct timespec *tv);
 #define __hidden __attribute__((visibility("hidden")))
 #endif
 
+char * b64_encode_alloc (const void *buf, size_t size);
+
 int b64_encode(const void *src, size_t src_len,
 	       void *dest, size_t dest_len);
 
