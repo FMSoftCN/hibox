@@ -16,8 +16,8 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#ifndef __LIBUBOX_ULOG_H
-#define __LIBUBOX_ULOG_H
+#ifndef __LIBHIBOX_ULOG_H
+#define __LIBHIBOX_ULOG_H
 
 #include <syslog.h>
 
@@ -27,6 +27,10 @@ enum {
 	ULOG_STDIO  = (1 << 2)
 };
 
+#ifdef __cplusplus
+extern  "C" {
+#endif
+
 void ulog_open(int channels, int facility, const char *ident);
 void ulog_close(void);
 
@@ -35,9 +39,13 @@ void ulog_threshold(int threshold);
 void ulog(int priority, const char *fmt, ...)
 	__attribute__ ((format (printf, 2, 3)));
 
+#ifdef __cplusplus
+}
+#endif
+
 #define ULOG_INFO(fmt, ...) ulog(LOG_INFO, fmt, ## __VA_ARGS__)
 #define ULOG_NOTE(fmt, ...) ulog(LOG_NOTICE, fmt, ## __VA_ARGS__)
 #define ULOG_WARN(fmt, ...) ulog(LOG_WARNING, fmt, ## __VA_ARGS__)
 #define ULOG_ERR(fmt, ...) ulog(LOG_ERR, fmt, ## __VA_ARGS__)
 
-#endif
+#endif  /* !__LIBHIBOX_ULOG_H */

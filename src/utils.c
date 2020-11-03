@@ -62,7 +62,7 @@ void *__calloc_a(size_t len, ...)
 	return ret;
 }
 
-#ifdef LIBUBOX_COMPAT_CLOCK_GETTIME
+#ifdef LIBHIBOX_COMPAT_CLOCK_GETTIME
 #include <mach/mach_host.h>		/* host_get_clock_service() */
 #include <mach/mach_port.h>		/* mach_port_deallocate() */
 #include <mach/mach_init.h>		/* mach_host_self(), mach_task_self() */

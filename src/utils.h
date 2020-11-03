@@ -16,8 +16,8 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#ifndef __LIBUBOX_UTILS_H
-#define __LIBUBOX_UTILS_H
+#ifndef __LIBHIBOX_UTILS_H
+#define __LIBHIBOX_UTILS_H
 
 #include <sys/types.h>
 #include <sys/time.h>
@@ -58,7 +58,7 @@ extern int __BUILD_BUG_ON_CONDITION_FAILED;
 #endif
 
 #if defined(__APPLE__) && !defined(CLOCK_MONOTONIC)
-#define LIBUBOX_COMPAT_CLOCK_GETTIME
+#define LIBHIBOX_COMPAT_CLOCK_GETTIME
 
 #include <mach/clock_types.h>
 #define CLOCK_REALTIME	CALENDAR_CLOCK
