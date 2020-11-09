@@ -16,7 +16,15 @@
 #ifndef __AVL_CMP_H
 #define __AVL_CMP_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 int avl_strcmp(const void *k1, const void *k2, void *ptr);
 int avl_blobcmp(const void *k1, const void *k2, void *ptr);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

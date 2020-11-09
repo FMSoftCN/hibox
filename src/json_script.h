@@ -86,6 +86,10 @@ struct json_script_file {
 	struct blob_attr data[];
 };
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void json_script_init(struct json_script_ctx *ctx);
 void json_script_free(struct json_script_ctx *ctx);
 
@@ -100,17 +104,6 @@ void json_script_run(struct json_script_ctx *ctx, const char *filename,
 
 void json_script_run_file(struct json_script_ctx *ctx, struct json_script_file *file,
 			  struct blob_attr *vars);
-
-/*
- * json_script_abort - abort current json script run
- *
- * to be called from a script context callback
- */
-static inline void
-json_script_abort(struct json_script_ctx *ctx)
-{
-	ctx->abort = true;
-}
 
 /*
  * json_script_eval_string - evaluate a string and store the result
@@ -132,5 +125,20 @@ json_script_file_from_blobmsg(const char *name, void *data, int len);
  */
 const char *json_script_find_var(struct json_script_ctx *ctx, struct blob_attr *vars,
 				 const char *name);
+
+#ifdef __cplusplus
+}
+#endif
+
+/*
+ * json_script_abort - abort current json script run
+ *
+ * to be called from a script context callback
+ */
+static inline void
+json_script_abort(struct json_script_ctx *ctx)
+{
+	ctx->abort = true;
+}
 
 #endif

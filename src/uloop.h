@@ -83,6 +83,10 @@ struct uloop_process
 	pid_t pid;
 };
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 extern bool uloop_cancelled;
 extern bool uloop_handle_sigchld;
 
@@ -99,17 +103,22 @@ int uloop_process_delete(struct uloop_process *p);
 
 bool uloop_cancelling(void);
 
+int uloop_init(void);
+int uloop_run_timeout(int timeout);
+void uloop_done(void);
+
+#ifdef __cplusplus
+}
+#endif
+
+static inline int uloop_run(void)
+{
+	return uloop_run_timeout(-1);
+}
+
 static inline void uloop_end(void)
 {
 	uloop_cancelled = true;
 }
 
-int uloop_init(void);
-int uloop_run_timeout(int timeout);
-static inline int uloop_run(void)
-{
-	return uloop_run_timeout(-1);
-}
-void uloop_done(void);
-
-#endif
+#endif  /* _ULOOP_H__ */

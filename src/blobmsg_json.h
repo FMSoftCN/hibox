@@ -21,16 +21,28 @@ struct json_object;
 #include <stdbool.h>
 #include "blobmsg.h"
 
+typedef const char *(*blobmsg_json_format_t)(void *priv, struct blob_attr *attr);
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 bool blobmsg_add_object(struct blob_buf *b, struct json_object *obj);
 bool blobmsg_add_json_element(struct blob_buf *b, const char *name, struct json_object *obj);
 bool blobmsg_add_json_from_string(struct blob_buf *b, const char *str);
 bool blobmsg_add_json_from_file(struct blob_buf *b, const char *file);
 
-typedef const char *(*blobmsg_json_format_t)(void *priv, struct blob_attr *attr);
-
 char *blobmsg_format_json_with_cb(struct blob_attr *attr, bool list,
 				  blobmsg_json_format_t cb, void *priv,
 				  int indent);
+
+char *blobmsg_format_json_value_with_cb(struct blob_attr *attr,
+					blobmsg_json_format_t cb, void *priv,
+					int indent);
+
+#ifdef __cplusplus
+}
+#endif
 
 static inline char *blobmsg_format_json(struct blob_attr *attr, bool list)
 {
@@ -41,10 +53,6 @@ static inline char *blobmsg_format_json_indent(struct blob_attr *attr, bool list
 {
 	return blobmsg_format_json_with_cb(attr, list, NULL, NULL, indent);
 }
-
-char *blobmsg_format_json_value_with_cb(struct blob_attr *attr,
-					blobmsg_json_format_t cb, void *priv,
-					int indent);
 
 static inline char *blobmsg_format_json_value(struct blob_attr *attr)
 {

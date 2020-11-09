@@ -52,6 +52,10 @@ struct kvlist_node {
 	     value = (void *) (__avl_list_to_kv(__ptr_to_kv(value)->avl.list.next))->data,	\
 	     name = (const char *) __ptr_to_kv(value)->avl.key)
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void kvlist_init(struct kvlist *kv, int (*get_len)(struct kvlist *kv, const void *data));
 void kvlist_free(struct kvlist *kv);
 void *kvlist_get(struct kvlist *kv, const char *name);
@@ -61,4 +65,8 @@ bool kvlist_delete(struct kvlist *kv, const char *name);
 int kvlist_strlen(struct kvlist *kv, const void *data);
 int kvlist_blob_len(struct kvlist *kv, const void *data);
 
+#ifdef __cplusplus
+}
 #endif
+
+#endif  /* __LIBHIBOX_KVLIST_H */

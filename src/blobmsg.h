@@ -110,6 +110,10 @@ static inline size_t blobmsg_len(const struct blob_attr *attr)
 	return blobmsg_data_len(attr);
 }
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /*
  * blobmsg_check_attr: validate a list of attributes
  *
@@ -177,6 +181,10 @@ int blobmsg_parse_array(const struct blobmsg_policy *policy, int policy_len,
 
 int blobmsg_add_field(struct blob_buf *buf, int type, const char *name,
                       const void *data, unsigned int len);
+
+#ifdef __cplusplus
+}
+#endif
 
 static inline int
 blobmsg_add_double(struct blob_buf *buf, const char *name, double val)
@@ -339,6 +347,10 @@ static inline char *blobmsg_get_string(struct blob_attr *attr)
 	return (char *) blobmsg_data(attr);
 }
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void *blobmsg_alloc_string_buffer(struct blob_buf *buf, const char *name, unsigned int maxlen);
 void *blobmsg_realloc_string_buffer(struct blob_buf *buf, unsigned int maxlen);
 void blobmsg_add_string_buffer(struct blob_buf *buf);
@@ -346,6 +358,10 @@ void blobmsg_add_string_buffer(struct blob_buf *buf);
 int blobmsg_vprintf(struct blob_buf *buf, const char *name, const char *format, va_list arg);
 int blobmsg_printf(struct blob_buf *buf, const char *name, const char *format, ...)
      __attribute__((format(printf, 3, 4)));
+
+#ifdef __cplusplus
+}
+#endif
 
 #define blobmsg_for_each_attr(pos, attr, rem) \
 	for (rem = attr ? blobmsg_data_len(attr) : 0, \

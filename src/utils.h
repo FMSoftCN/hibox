@@ -37,7 +37,15 @@
 
 #define calloc_a(len, ...) __calloc_a(len, ##__VA_ARGS__, NULL)
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void *__calloc_a(size_t len, ...);
+
+#ifdef __cplusplus
+}
+#endif
 
 #ifndef ARRAY_SIZE
 #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]))
@@ -64,7 +72,15 @@ extern int __BUILD_BUG_ON_CONDITION_FAILED;
 #define CLOCK_REALTIME	CALENDAR_CLOCK
 #define CLOCK_MONOTONIC	SYSTEM_CLOCK
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 int clock_gettime(int type, struct timespec *tv);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
 
@@ -226,12 +242,20 @@ int clock_gettime(int type, struct timespec *tv);
 #define __hidden __attribute__((visibility("hidden")))
 #endif
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 char * b64_encode_alloc (const void *buf, size_t size);
 
 int b64_encode(const void *src, size_t src_len,
 	       void *dest, size_t dest_len);
 
 int b64_decode(const void *src, void *dest, size_t dest_len);
+
+#ifdef __cplusplus
+}
+#endif
 
 #define B64_ENCODE_LEN(_len)	((((_len) + 2) / 3) * 4 + 1)
 #define B64_DECODE_LEN(_len)	(((_len) / 4) * 3 + 1)
@@ -252,11 +276,18 @@ static inline unsigned long cbuf_size(int order)
 	return ret;
 }
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void *cbuf_alloc(unsigned int order);
 void cbuf_free(void *ptr, unsigned int order);
 
-/* SHA1 */
+#ifdef __cplusplus
+}
+#endif
 
+/* SHA1 */
 #include <sys/types.h>
 #include <stdint.h>
 
@@ -268,8 +299,16 @@ typedef struct {
   uint8_t buffer[64];
 } SHA1_CTX;
 
-extern void sha1_init (SHA1_CTX * context);
-extern void sha1_update (SHA1_CTX * context, uint8_t * data, uint32_t len);
-extern void sha1_finalize (uint8_t digest[20], SHA1_CTX * context);
-
+#ifdef __cplusplus
+extern "C" {
 #endif
+
+void sha1_init (SHA1_CTX * context);
+void sha1_update (SHA1_CTX * context, uint8_t * data, uint32_t len);
+void sha1_finalize (uint8_t digest[20], SHA1_CTX * context);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif  /* __LIBHIBOX_UTILS_H */

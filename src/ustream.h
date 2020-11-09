@@ -16,8 +16,8 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#ifndef __USTREAM_H
-#define __USTREAM_H
+#ifndef __LIBHIBOX_USTREAM_H
+#define __LIBHIBOX_USTREAM_H
 
 #include <stdarg.h>
 #include "uloop.h"
@@ -134,6 +134,10 @@ struct ustream_buf {
 	char head[];
 };
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* ustream_fd_init: create a file descriptor ustream (uses uloop) */
 void ustream_fd_init(struct ustream_fd *s, int fd);
 
@@ -165,24 +169,6 @@ char *ustream_get_read_buf(struct ustream *s, int *buflen);
  */
 void ustream_set_read_blocked(struct ustream *s, bool set);
 
-static inline bool ustream_read_blocked(struct ustream *s)
-{
-	return !!(s->read_blocked & READ_BLOCKED_USER);
-}
-
-static inline int ustream_pending_data(struct ustream *s, bool write)
-{
-	struct ustream_buf_list *b = write ? &s->w : &s->r;
-	return b->data_bytes;
-}
-
-static inline bool ustream_read_buf_full(struct ustream *s)
-{
-	struct ustream_buf *buf = s->r.data_tail;
-	return buf && buf->data == buf->head && buf->tail == buf->end &&
-	       s->r.buffers == s->r.max_buffers;
-}
-
 /*** --- functions only used by ustream implementations --- ***/
 
 /* ustream_init_defaults: fill default callbacks and options */
@@ -205,6 +191,28 @@ void ustream_fill_read(struct ustream *s, int len);
  */
 bool ustream_write_pending(struct ustream *s);
 
+#ifdef __cplusplus
+}
+#endif
+
+static inline bool ustream_read_blocked(struct ustream *s)
+{
+	return !!(s->read_blocked & READ_BLOCKED_USER);
+}
+
+static inline int ustream_pending_data(struct ustream *s, bool write)
+{
+	struct ustream_buf_list *b = write ? &s->w : &s->r;
+	return b->data_bytes;
+}
+
+static inline bool ustream_read_buf_full(struct ustream *s)
+{
+	struct ustream_buf *buf = s->r.data_tail;
+	return buf && buf->data == buf->head && buf->tail == buf->end &&
+	       s->r.buffers == s->r.max_buffers;
+}
+
 static inline void ustream_state_change(struct ustream *s)
 {
 	uloop_timeout_set(&s->state_change, 0);
@@ -218,4 +226,4 @@ static inline bool ustream_poll(struct ustream *s)
 	return s->poll(s);
 }
 
-#endif
+#endif  /* __LIBHIBOX_USTREAM_H */

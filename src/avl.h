@@ -165,12 +165,20 @@ enum avl_find_mode {
 	struct avl_tree _name =					\
 		AVL_TREE_INIT(_name, _comp, _allow_dups, _cmp_ptr)
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void EXPORT(avl_init)(struct avl_tree *, avl_tree_comp, bool, void *);
 struct avl_node *EXPORT(avl_find)(const struct avl_tree *, const void *);
 struct avl_node *EXPORT(avl_find_greaterequal)(const struct avl_tree *tree, const void *key);
 struct avl_node *EXPORT(avl_find_lessequal)(const struct avl_tree *tree, const void *key);
 int EXPORT(avl_insert)(struct avl_tree *, struct avl_node *);
 void EXPORT(avl_delete)(struct avl_tree *, struct avl_node *);
+
+#ifdef __cplusplus
+}
+#endif
 
 /**
  * @param tree pointer to avl-tree

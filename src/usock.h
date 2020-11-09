@@ -16,8 +16,8 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-#ifndef USOCK_H_
-#define USOCK_H_
+#ifndef __LIBHIBOX_USOCK_H
+#define __LIBHIBOX_USOCK_H
 
 #define USOCK_TCP 0
 #define USOCK_UDP 1
@@ -30,16 +30,14 @@
 #define USOCK_IPV4ONLY		0x4000
 #define USOCK_UNIX		0x8000
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 const char *usock_port(int port);
 int usock(int type, const char *host, const char *service);
 int usock_inet_timeout(int type, const char *host, const char *service,
 		       void *addr, int timeout);
-static inline int
-usock_inet(int type, const char *host, const char *service, void *addr)
-{
-    return usock_inet_timeout(type, host, service, addr, -1);
-}
-
 /**
  * Wait for a socket to become ready.
  *
@@ -51,4 +49,14 @@ usock_inet(int type, const char *host, const char *service, void *addr)
  */
 int usock_wait_ready(int fd, int msecs);
 
-#endif /* USOCK_H_ */
+#ifdef __cplusplus
+}
+#endif
+
+static inline int
+usock_inet(int type, const char *host, const char *service, void *addr)
+{
+    return usock_inet_timeout(type, host, service, addr, -1);
+}
+
+#endif /* __LIBHIBOX_USOCK_H */

@@ -187,21 +187,29 @@ blob_next(const struct blob_attr *attr)
 	return (struct blob_attr *) ((char *) attr + blob_pad_len(attr));
 }
 
-extern void blob_fill_pad(struct blob_attr *attr);
-extern void blob_set_raw_len(struct blob_attr *attr, unsigned int len);
-extern bool blob_attr_equal(const struct blob_attr *a1, const struct blob_attr *a2);
-extern int blob_buf_init(struct blob_buf *buf, int id);
-extern void blob_buf_free(struct blob_buf *buf);
-extern bool blob_buf_grow(struct blob_buf *buf, int required);
-extern struct blob_attr *blob_new(struct blob_buf *buf, int id, int payload);
-extern void *blob_nest_start(struct blob_buf *buf, int id);
-extern void blob_nest_end(struct blob_buf *buf, void *cookie);
-extern struct blob_attr *blob_put(struct blob_buf *buf, int id, const void *ptr, unsigned int len);
-extern bool blob_check_type(const void *ptr, unsigned int len, int type);
-extern int blob_parse(struct blob_attr *attr, struct blob_attr **data, const struct blob_attr_info *info, int max);
-extern int blob_parse_untrusted(struct blob_attr *attr, size_t attr_len, struct blob_attr **data, const struct blob_attr_info *info, int max);
-extern struct blob_attr *blob_memdup(struct blob_attr *attr);
-extern struct blob_attr *blob_put_raw(struct blob_buf *buf, const void *ptr, unsigned int len);
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+void blob_fill_pad(struct blob_attr *attr);
+void blob_set_raw_len(struct blob_attr *attr, unsigned int len);
+bool blob_attr_equal(const struct blob_attr *a1, const struct blob_attr *a2);
+int blob_buf_init(struct blob_buf *buf, int id);
+void blob_buf_free(struct blob_buf *buf);
+bool blob_buf_grow(struct blob_buf *buf, int required);
+struct blob_attr *blob_new(struct blob_buf *buf, int id, int payload);
+void *blob_nest_start(struct blob_buf *buf, int id);
+void blob_nest_end(struct blob_buf *buf, void *cookie);
+struct blob_attr *blob_put(struct blob_buf *buf, int id, const void *ptr, unsigned int len);
+bool blob_check_type(const void *ptr, unsigned int len, int type);
+int blob_parse(struct blob_attr *attr, struct blob_attr **data, const struct blob_attr_info *info, int max);
+int blob_parse_untrusted(struct blob_attr *attr, size_t attr_len, struct blob_attr **data, const struct blob_attr_info *info, int max);
+struct blob_attr *blob_memdup(struct blob_attr *attr);
+struct blob_attr *blob_put_raw(struct blob_buf *buf, const void *ptr, unsigned int len);
+
+#ifdef __cplusplus
+}
+#endif
 
 static inline struct blob_attr *
 blob_put_string(struct blob_buf *buf, int id, const char *str)

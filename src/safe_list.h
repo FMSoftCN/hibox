@@ -37,6 +37,10 @@ struct safe_list {
 	struct safe_list_iterator *i;
 };
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 int safe_list_for_each(struct safe_list *list,
 		       int (*cb)(void *ctx, struct safe_list *list),
 		       void *ctx);
@@ -44,6 +48,10 @@ int safe_list_for_each(struct safe_list *list,
 void safe_list_add(struct safe_list *list, struct safe_list *head);
 void safe_list_add_first(struct safe_list *list, struct safe_list *head);
 void safe_list_del(struct safe_list *list);
+
+#ifdef __cplusplus
+}
+#endif
 
 #define INIT_SAFE_LIST(_head) \
 	do { \
@@ -59,4 +67,4 @@ static inline bool safe_list_empty(struct safe_list *head)
 	return list_empty(&head->list);
 }
 
-#endif
+#endif  /* __LIBHIBOX_SAFE_LIST_H */

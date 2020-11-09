@@ -50,9 +50,17 @@ typedef struct md5_ctx {
 	unsigned char buffer[64];
 } md5_ctx_t;
 
-extern void md5_begin(md5_ctx_t *ctx);
-extern void md5_hash(const void *data, size_t length, md5_ctx_t *ctx);
-extern void md5_end(void *resbuf, md5_ctx_t *ctx);
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+void md5_begin(md5_ctx_t *ctx);
+void md5_hash(const void *data, size_t length, md5_ctx_t *ctx);
+void md5_end(void *resbuf, md5_ctx_t *ctx);
 int md5sum(const char *file, void *md5_buf);
 
+#ifdef __cplusplus
+}
 #endif
+
+#endif  /* _LIBHIBOX_MD5_H */

@@ -99,6 +99,10 @@ struct runqueue_process {
 #define RUNQUEUE(_name, _max_running) \
 	struct runqueue _name = RUNQUEUE_INIT(_name, _max_running)
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void runqueue_init(struct runqueue *q);
 void runqueue_cancel(struct runqueue *q);
 void runqueue_cancel_active(struct runqueue *q);
@@ -121,4 +125,8 @@ void runqueue_process_add(struct runqueue *q, struct runqueue_process *p, pid_t 
 void runqueue_process_cancel_cb(struct runqueue *q, struct runqueue_task *t, int type);
 void runqueue_process_kill_cb(struct runqueue *q, struct runqueue_task *t);
 
+#ifdef __cplusplus
+}
 #endif
+
+#endif  /* __LIBHIBOX_RUNQUEUE_H */

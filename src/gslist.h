@@ -32,6 +32,10 @@ typedef struct GSLList_
   struct GSLList_ *next;
 } GSLList;
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* single linked-list */
 GSLList *gslist_create (void *data);
 GSLList *gslist_find (GSLList * node, int (*func) (void *, void *), void *data);
@@ -43,4 +47,8 @@ int gslist_foreach (GSLList * node, int (*func) (void *, void *),
 int gslist_remove_node (GSLList ** list, GSLList * node);
 int gslist_remove_nodes (GSLList * list);
 
-#endif // for #ifndef HIBOX_GSLIST_H
+#ifdef __cplusplus
+}
+#endif
+
+#endif // HIBOX_GSLIST_H
