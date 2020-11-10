@@ -41,10 +41,6 @@ typedef struct {
 
 #define SHA256_DIGEST_SIZE           (256 / 8)
 
-typedef struct {
-    uint8_t     bytes[SHA256_DIGEST_SIZE];
-} Sha256Digest;
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -72,7 +68,7 @@ void sha256_update (Sha256Context* ctxt, const void* buff, uint32_t buff_sz);
  * (32 byte buffer containing 256bit hash).
  * After calling this, Sha256Initialised must be used to reuse the context.
  */
-void sha256_finalize (Sha256Context* ctxt, Sha256Digest* digest);
+void sha256_finalize (Sha256Context* ctxt, uint8_t* digest);
 
 /*
  * sha256_calc_digest
@@ -80,7 +76,7 @@ void sha256_finalize (Sha256Context* ctxt, Sha256Digest* digest);
  * Combines sha256_init, sha256_update, and sha256_finalize into one function.
  * Calculates the SHA256 hash of the buffer.
  */
-void sha256_calc_digest (const void* buff, uint32_t buff_sz, Sha256Digest* digest);
+void sha256_calc_digest (const void* buff, uint32_t buff_sz, uint8_t* digest);
 
 #ifdef __cplusplus
 }

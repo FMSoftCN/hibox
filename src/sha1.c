@@ -219,7 +219,7 @@ sha1_update (Sha1Context * context, uint8_t * data, unsigned int len)
 
 /* Add padding and return the message digest. */
 void
-sha1_finalize (Sha1Hash* digest, Sha1Context * context)
+sha1_finalize (Sha1Context * context, uint8_t* digest)
 {
     uint32_t i, j;
     uint8_t finalcount[8];
@@ -234,7 +234,7 @@ sha1_finalize (Sha1Hash* digest, Sha1Context * context)
     }
     sha1_update (context, finalcount, 8);  /* Should cause a sha1_transform() */
     for (i = 0; i < 20; i++) {
-        digest->bytes[i] = (uint8_t)
+        digest[i] = (uint8_t)
             ((context->state[i >> 2] >> ((3 - (i & 3)) * 8)) & 255);
     }
     /* Wipe variables */

@@ -203,7 +203,7 @@ sha256_update (Sha256Context* ctxt, const void* buff, uint32_t buff_sz)
 }
 
 void
-sha256_finalize (Sha256Context* ctxt, Sha256Digest* digest)
+sha256_finalize (Sha256Context* ctxt, uint8_t* digest)
 {
     int i;
 
@@ -239,12 +239,12 @@ sha256_finalize (Sha256Context* ctxt, Sha256Digest* digest)
 
     // Copy output
     for (i=0; i<8; i++) {
-        STORE32H (ctxt->state[i], digest->bytes+(4*i));
+        STORE32H (ctxt->state[i], digest+(4*i));
     }
 }
 
 void
-sha256_calc_digest (const void* buff, uint32_t buff_sz, Sha256Digest* digest)
+sha256_calc_digest (const void* buff, uint32_t buff_sz, uint8_t* digest)
 {
     Sha256Context context;
 
@@ -252,3 +252,4 @@ sha256_calc_digest (const void* buff, uint32_t buff_sz, Sha256Digest* digest)
     sha256_update (&context, buff, buff_sz);
     sha256_finalize (&context, digest);
 }
+

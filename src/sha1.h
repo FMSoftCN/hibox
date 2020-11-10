@@ -34,11 +34,7 @@ typedef struct {
   uint8_t       buffer[64];
 } Sha1Context;
 
-#define SHA1_HASH_SIZE          (20)
-
-typedef struct {
-    uint8_t     bytes [SHA1_HASH_SIZE];
-} Sha1Hash;
+#define SHA1_DIGEST_SIZE          (20)
 
 #ifdef __cplusplus
 extern "C" {
@@ -46,7 +42,7 @@ extern "C" {
 
 void sha1_init (Sha1Context *context);
 void sha1_update (Sha1Context *context, uint8_t *data, uint32_t len);
-void sha1_finalize (Sha1Hash *digest, Sha1Context *context);
+void sha1_finalize (Sha1Context *context, uint8_t *digest);
 
 #ifdef __cplusplus
 }

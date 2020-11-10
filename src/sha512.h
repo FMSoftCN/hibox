@@ -42,11 +42,6 @@ typedef struct
 
 #define SHA512_DIGEST_SIZE            (512/8)
 
-typedef struct
-{
-    uint8_t      bytes [SHA512_DIGEST_SIZE];
-} Sha512Digest;
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -75,7 +70,7 @@ void sha512_update (Sha512Context* ctxt, const void* buff, uint32_t buff_sz);
  * (64 byte buffer containing 512bit hash).
  * After calling this, Sha512Initialised must be used to reuse the context.
  */
-void sha512_finalize (Sha512Context* ctxt, Sha512Digest* digest);
+void sha512_finalize (Sha512Context* ctxt, uint8_t* digest);
 
 /*
  * sha512_calc_digest
@@ -83,7 +78,7 @@ void sha512_finalize (Sha512Context* ctxt, Sha512Digest* digest);
  * Combines sha512_init, sha512_update, and sha512_finalize into one function.
  * Calculates the SHA512 hash of the buffer.
  */
-void sha512_calc_digest (const void* buff, uint32_t buff_sz, Sha512Digest* digest);
+void sha512_calc_digest (const void* buff, uint32_t buff_sz, uint8_t* digest);
 
 #ifdef __cplusplus
 }

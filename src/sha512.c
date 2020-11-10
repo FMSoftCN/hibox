@@ -204,7 +204,7 @@ sha512_update (Sha512Context* ctxt, const void* buff, uint32_t buff_sz)
 }
 
 void
-sha512_finalize (Sha512Context* ctxt, Sha512Digest* digest)
+sha512_finalize (Sha512Context* ctxt, uint8_t* digest)
 {
     int i;
 
@@ -247,12 +247,12 @@ sha512_finalize (Sha512Context* ctxt, Sha512Digest* digest)
     // Copy output
     for( i=0; i<8; i++ )
     {
-        STORE64H( ctxt->state[i], digest->bytes+(8*i) );
+        STORE64H( ctxt->state[i], digest+(8*i) );
     }
 }
 
 void
-sha512_calc_digest (const void* buff, uint32_t buff_sz, Sha512Digest* digest)
+sha512_calc_digest (const void* buff, uint32_t buff_sz, uint8_t* digest)
 {
     Sha512Context context;
 

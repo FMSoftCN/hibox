@@ -21,8 +21,8 @@
  *
  */
 
-
 #include "hmac.h"
+#include "sha256.h"
 
 /*
  * HMAC(H, K) == H(K ^ opad, H(K ^ ipad, text))
@@ -43,12 +43,12 @@
 #define O_PAD 0x5C
 
 void
-hmac_sha256 (Sha256Digest* out,
+hmac_sha256 (uint8_t* out,
              const uint8_t *data, size_t data_len,
              const uint8_t *key, size_t key_len)
 {
     Sha256Context ss;
-    Sha256Digest kh;
+    uint8_t kh[SHA256_DIGEST_SIZE];
 
     /*
      * If the key length is bigger than the buffer size B, apply the hash
@@ -57,9 +57,9 @@ hmac_sha256 (Sha256Digest* out,
     if (key_len > B) {
         sha256_init (&ss);
         sha256_update (&ss, key, key_len);
-        sha256_finalize (&ss, &kh);
+        sha256_finalize (&ss, kh);
         key_len = SHA256_DIGEST_SIZE;
-        key = kh.bytes;
+        key = kh;
     }
 
     /*

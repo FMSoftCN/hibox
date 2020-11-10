@@ -24,13 +24,14 @@
 #ifndef __LIBHIBOX_HMAC_H
 #define __LIBHIBOX_HMAC_H
 
-#include "sha256.h"
+#include <stdint.h>
+#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-void hmac_sha256 (Sha256Digest* out,
+void hmac_sha256 (uint8_t* out,
         const uint8_t *data, size_t data_len, const uint8_t *key, size_t key_len);
 
 #ifdef __cplusplus
