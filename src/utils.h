@@ -287,28 +287,4 @@ void cbuf_free(void *ptr, unsigned int order);
 }
 #endif
 
-/* SHA1 */
-#include <sys/types.h>
-#include <stdint.h>
-
-// From http://www.mirrors.wiretapped.net/security/cryptography/hashes/sha1/sha1.c
-
-typedef struct {
-  uint32_t state[5];
-  uint32_t count[2];
-  uint8_t buffer[64];
-} SHA1_CTX;
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-void sha1_init (SHA1_CTX * context);
-void sha1_update (SHA1_CTX * context, uint8_t * data, uint32_t len);
-void sha1_finalize (uint8_t digest[20], SHA1_CTX * context);
-
-#ifdef __cplusplus
-}
-#endif
-
 #endif  /* __LIBHIBOX_UTILS_H */
