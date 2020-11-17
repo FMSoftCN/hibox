@@ -308,6 +308,15 @@ void md5_end(void *resbuf, md5_ctx_t *ctx)
 	memset(ctx, 0, sizeof(*ctx));
 }
 
+void md5digest (const char *string, char* digest)
+{
+	md5_ctx_t ctx;
+
+	md5_begin (&ctx);
+	md5_hash (string, strlen (string), &ctx);
+	md5_end (digest, &ctx);
+}
+
 int md5sum(const char *file, void *md5_buf)
 {
 	char buf[256];
