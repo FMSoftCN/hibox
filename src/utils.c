@@ -155,3 +155,18 @@ void cbuf_free(void *ptr, unsigned int order)
 {
 	munmap(ptr, cbuf_size(order) * 2);
 }
+
+static char hex_digits [] = {
+    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'
+};
+
+void bin2hex (const unsigned char *bin, int len, char *hex)
+{
+    for (int i = 0; i < len; i++) {
+        unsigned char byte = bin [i];
+        hex [i*2] = hex_digits [(byte >> 4) & 0x0f];
+        hex [i*2+1] = hex_digits [byte & 0x0f];
+    }
+    hex [len * 2] = '\0';
+}
+
