@@ -286,6 +286,10 @@ void cbuf_free(void *ptr, unsigned int order);
 /* hex must be long enough to hold the heximal characters */
 void bin2hex (const unsigned char *bin, int len, char *hex);
 
+/* bin must be long enough to hold the bytes.
+   return the number of bytes converted, <= 0 for error */
+int hex2bin (const char *hex, unsigned char *bin);
+
 #ifdef __cplusplus
 }
 #endif

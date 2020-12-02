@@ -20,6 +20,8 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <ctype.h>
+
 #include "utils.h"
 
 #define foreach_arg(_arg, _addr, _len, _first_addr, _first_len) \
@@ -168,5 +170,43 @@ void bin2hex (const unsigned char *bin, int len, char *hex)
         hex [i*2+1] = hex_digits [byte & 0x0f];
     }
     hex [len * 2] = '\0';
+}
+
+/* bin must be long enough to hold the bytes.
+   return the number of bytes converted, <= 0 for error */
+int hex2bin (const char *hex, unsigned char *bin)
+{
+    int pos = 0;
+    int sz = 0;
+
+    while (*hex) {
+        unsigned char half;
+
+        if (*hex >= '0' && *hex <= '9') {
+            half = (*hex - '0') & 0x0f;
+        }
+        else {
+            int c = tolower (*hex);
+            if (c >= 'a' && c <= 'f') {
+                half = (*hex - 'a' + 0x10) & 0x0f;
+            }
+            else {
+                return -1;
+            }
+        }
+
+        if (pos % 2 == 0) {
+            *bin = half;
+        }
+        else {
+            *bin |= half << 4;
+            bin++;
+            sz++;
+        }
+
+        pos++;
+    }
+
+    return sz;
 }
 
