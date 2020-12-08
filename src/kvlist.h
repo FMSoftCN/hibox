@@ -24,6 +24,7 @@
 struct kvlist {
 	struct avl_tree avl;
 
+    /* VW: can be NULL for pointer */
 	int (*get_len)(struct kvlist *kv, const void *data);
 };
 
@@ -56,6 +57,7 @@ struct kvlist_node {
 extern "C" {
 #endif
 
+/* get_len can be NULL for pointer */
 void kvlist_init(struct kvlist *kv, int (*get_len)(struct kvlist *kv, const void *data));
 void kvlist_free(struct kvlist *kv);
 void *kvlist_get(struct kvlist *kv, const char *name);
