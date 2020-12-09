@@ -43,6 +43,9 @@ struct printbuf
 };
 typedef struct printbuf printbuf;
 
+/* VW: add for printbuf defined in stack */
+JSON_EXPORT int printbuf_init(struct printbuf *pb);
+
 JSON_EXPORT struct printbuf *printbuf_new(void);
 
 /* As an optimization, printbuf_memappend_fast() is defined as a macro

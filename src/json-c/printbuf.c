@@ -33,6 +33,17 @@
 
 static int printbuf_extend(struct printbuf *p, int min_size);
 
+int printbuf_init(struct printbuf *p)
+{
+	p->size = 32;
+	p->bpos = 0;
+	if (!(p->buf = (char *)malloc(p->size))) {
+        return -1;
+	}
+	p->buf[0] = '\0';
+    return 0;
+}
+
 struct printbuf *printbuf_new(void)
 {
 	struct printbuf *p;
@@ -40,14 +51,12 @@ struct printbuf *printbuf_new(void)
 	p = (struct printbuf *)calloc(1, sizeof(struct printbuf));
 	if (!p)
 		return NULL;
-	p->size = 32;
-	p->bpos = 0;
-	if (!(p->buf = (char *)malloc(p->size)))
-	{
+
+    if (printbuf_init (p)) {
 		free(p);
 		return NULL;
-	}
-	p->buf[0] = '\0';
+    }
+
 	return p;
 }
 
