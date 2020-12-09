@@ -99,8 +99,10 @@ gslist_remove_nodes (gs_list * list)
   gs_list *tmp;
   while (list != NULL) {
     tmp = list->next;
+    /* VW: do not free data
     if (list->data)
       free (list->data);
+    */
     free (list);
     list = tmp;
   }
@@ -121,8 +123,10 @@ gslist_remove_node (gs_list ** list, gs_list * node)
       continue;
 
     next = (*current)->next;
+    /* VW: do not free data
     if ((*current)->data)
       free ((*current)->data);
+    */
     free (*current);
     *current = next;
     return 0;
