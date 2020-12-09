@@ -34,11 +34,11 @@
 /* Instantiate a new Single linked-list node.
  *
  * On error, aborts if node can't be malloc'd.
- * On success, the GSLList node. */
-GSLList *
+ * On success, the gs_list node. */
+gs_list *
 gslist_create (void *data)
 {
-  GSLList *node = malloc (sizeof (GSLList));
+  gs_list *node = malloc (sizeof (gs_list));
   node->data = data;
   node->next = NULL;
 
@@ -49,10 +49,10 @@ gslist_create (void *data)
  *
  * On error, aborts if node can't be malloc'd.
  * On success, the newly created node. */
-GSLList *
-gslist_insert_append (GSLList * node, void *data)
+gs_list *
+gslist_insert_append (gs_list * node, void *data)
 {
-  GSLList *newnode;
+  gs_list *newnode;
   newnode = gslist_create (data);
   newnode->next = node->next;
   node->next = newnode;
@@ -64,10 +64,10 @@ gslist_insert_append (GSLList * node, void *data)
  *
  * On error, aborts if node can't be malloc'd.
  * On success, the newly created node. */
-GSLList *
-gslist_insert_prepend (GSLList * list, void *data)
+gs_list *
+gslist_insert_prepend (gs_list * list, void *data)
 {
-  GSLList *newnode;
+  gs_list *newnode;
   newnode = gslist_create (data);
   newnode->next = list;
 
@@ -78,8 +78,8 @@ gslist_insert_prepend (GSLList * list, void *data)
  *
  * If comparison fails, NULL is returned.
  * On success, the existing node is returned. */
-GSLList *
-gslist_find (GSLList * node, int (*func) (void *, void *), void *data)
+gs_list *
+gslist_find (gs_list * node, int (*func) (void *, void *), void *data)
 {
   while (node) {
     if (func (node->data, data) > 0)
@@ -94,9 +94,9 @@ gslist_find (GSLList * node, int (*func) (void *, void *), void *data)
  *
  * On success, 0 is returned. */
 int
-gslist_remove_nodes (GSLList * list)
+gslist_remove_nodes (gs_list * list)
 {
-  GSLList *tmp;
+  gs_list *tmp;
   while (list != NULL) {
     tmp = list->next;
     if (list->data)
@@ -113,9 +113,9 @@ gslist_remove_nodes (GSLList * list)
  * On error, 1 is returned.
  * On success, 0 is returned. */
 int
-gslist_remove_node (GSLList ** list, GSLList * node)
+gslist_remove_node (gs_list ** list, gs_list * node)
 {
-  GSLList **current = list, *next = NULL;
+  gs_list **current = list, *next = NULL;
   for (; *current; current = &(*current)->next) {
     if ((*current) != node)
       continue;
@@ -135,7 +135,7 @@ gslist_remove_node (GSLList ** list, GSLList * node)
  * If function pointer does not return 0, -1 is returned.
  * On success, 0 is returned. */
 int
-gslist_foreach (GSLList * node, int (*func) (void *, void *), void *user_data)
+gslist_foreach (gs_list * node, int (*func) (void *, void *), void *user_data)
 {
   while (node) {
     if (func (node->data, user_data) != 0)
@@ -150,7 +150,7 @@ gslist_foreach (GSLList * node, int (*func) (void *, void *), void *user_data)
  *
  * On success, the number of elements is returned. */
 int
-gslist_count (GSLList * node)
+gslist_count (gs_list * node)
 {
   int count = 0;
   while (node != 0) {

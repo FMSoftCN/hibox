@@ -26,26 +26,26 @@
 #define HIBOX_GSLIST_H
 
 /* Generic Single linked-list */
-typedef struct GSLList_
+typedef struct gs_list_
 {
   void *data;
-  struct GSLList_ *next;
-} GSLList;
+  struct gs_list_ *next;
+} gs_list;
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 /* single linked-list */
-GSLList *gslist_create (void *data);
-GSLList *gslist_find (GSLList * node, int (*func) (void *, void *), void *data);
-GSLList *gslist_insert_append (GSLList * node, void *data);
-GSLList *gslist_insert_prepend (GSLList * list, void *data);
-int gslist_count (GSLList * list);
-int gslist_foreach (GSLList * node, int (*func) (void *, void *),
+gs_list *gslist_create (void *data);
+gs_list *gslist_find (gs_list * node, int (*func) (void *, void *), void *data);
+gs_list *gslist_insert_append (gs_list * node, void *data);
+gs_list *gslist_insert_prepend (gs_list * list, void *data);
+int gslist_count (gs_list * list);
+int gslist_foreach (gs_list * node, int (*func) (void *, void *),
                   void *user_data);
-int gslist_remove_node (GSLList ** list, GSLList * node);
-int gslist_remove_nodes (GSLList * list);
+int gslist_remove_node (gs_list ** list, gs_list * node);
+int gslist_remove_nodes (gs_list * list);
 
 #ifdef __cplusplus
 }
