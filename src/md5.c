@@ -256,7 +256,7 @@ void md5_hash(const void *data, size_t size, md5_ctx_t *ctx)
 	memcpy(ctx->buffer, data, size);
 }
 
-void md5_end(void *resbuf, md5_ctx_t *ctx)
+void md5_end(unsigned char *resbuf, md5_ctx_t *ctx)
 {
 	unsigned char *result = resbuf;
 	unsigned long used, available;
@@ -308,7 +308,7 @@ void md5_end(void *resbuf, md5_ctx_t *ctx)
 	memset(ctx, 0, sizeof(*ctx));
 }
 
-void md5digest (const char *string, char* digest)
+void md5digest (const char *string, unsigned char* digest)
 {
 	md5_ctx_t ctx;
 
@@ -317,7 +317,7 @@ void md5digest (const char *string, char* digest)
 	md5_end (digest, &ctx);
 }
 
-int md5sum(const char *file, void *md5_buf)
+int md5sum(const char *file, unsigned char *md5_buf)
 {
 	char buf[256];
 	md5_ctx_t ctx;

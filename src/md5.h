@@ -44,6 +44,8 @@
 #include <stdint.h>
 #include <stddef.h>
 
+#define MD5_DIGEST_SIZE          (16)
+
 typedef struct md5_ctx {
 	uint32_t lo, hi;
 	uint32_t a, b, c, d;
@@ -56,11 +58,11 @@ extern "C" {
 
 void md5_begin (md5_ctx_t *ctx);
 void md5_hash (const void *data, size_t length, md5_ctx_t *ctx);
-void md5_end (void *resbuf, md5_ctx_t *ctx);
+void md5_end (unsigned char *resbuf, md5_ctx_t *ctx);
 
 /* \a digest should be long enough (at least 16) to store the returned digest */
-void md5digest (const char *string, char* digest);
-int md5sum (const char *file, void *md5_buf);
+void md5digest (const char *string, unsigned char *digest);
+int md5sum (const char *file, unsigned char *md5_buf);
 
 #ifdef __cplusplus
 }
