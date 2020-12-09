@@ -31,7 +31,8 @@ struct kvlist {
 struct kvlist_node {
 	struct avl_node avl;
 
-	char data[0] __attribute__((aligned(4)));
+    /* VW: use the maximum alignment instead of 4 (pointer safe)*/
+	char data[0] __attribute__((aligned));
 };
 
 #define KVLIST_INIT(_name, _get_len)						\
