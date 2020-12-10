@@ -54,6 +54,14 @@ struct kvlist_node {
 	     value = (void *) (__avl_list_to_kv(__ptr_to_kv(value)->avl.list.next))->data,	\
 	     name = (const char *) __ptr_to_kv(value)->avl.key)
 
+#define kvlist_for_each_safe(kv, name, next, value) \
+    for (value = (void *) __avl_list_to_kv((kv)->avl.list_head.next)->data,             \
+         name = (const char *) __ptr_to_kv(value)->avl.key, (void) name,                \
+         next = (void *) (__avl_list_to_kv(__ptr_to_kv(value)->avl.list.next))->data;   \
+         &__ptr_to_kv(value)->avl.list != &(kv)->avl.list_head;                         \
+         value = next, name = (const char *) __ptr_to_kv(value)->avl.key,               \
+         next = (void *) (__avl_list_to_kv(__ptr_to_kv(value)->avl.list.next))->data)
+
 #ifdef __cplusplus
 extern "C" {
 #endif
