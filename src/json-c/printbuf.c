@@ -38,6 +38,7 @@ int printbuf_init(struct printbuf *p)
 	p->size = 32;
 	p->bpos = 0;
 	if (!(p->buf = (char *)malloc(p->size))) {
+		p->size = 0;
         return -1;
 	}
 	p->buf[0] = '\0';
@@ -90,8 +91,12 @@ static int printbuf_extend(struct printbuf *p, int min_size)
 	         "bpos=%d min_size=%d old_size=%d new_size=%d\n",
 	         p->bpos, min_size, p->size, new_size);
 #endif /* PRINTBUF_DEBUG */
-	if (!(t = (char *)realloc(p->buf, new_size)))
+	if (!(t = (char *)realloc(p->buf, new_size))) {
+		p->buf = NULL;
+		p->size = 0;
+		p->bpos = 0;
 		return -1;
+	}
 	p->size = new_size;
 	p->buf = t;
 	return 0;
@@ -99,6 +104,12 @@ static int printbuf_extend(struct printbuf *p, int min_size)
 
 int printbuf_memappend(struct printbuf *p, const char *buf, int size)
 {
+	if (!p->buf)
+		return -1;
+
+	if (size <= 0)
+		size = strlen (buf);
+
 	/* Prevent signed integer overflows with large buffers. */
 	if (size > INT_MAX - p->bpos - 1)
 		return -1;
@@ -116,6 +127,9 @@ int printbuf_memappend(struct printbuf *p, const char *buf, int size)
 int printbuf_memset(struct printbuf *pb, int offset, int charvalue, int len)
 {
 	int size_needed;
+
+	if (!pb->buf)
+		return -1;
 
 	if (offset == -1)
 		offset = pb->bpos;
@@ -142,6 +156,9 @@ int sprintbuf(struct printbuf *p, const char *msg, ...)
 	char *t;
 	int size;
 	char buf[128];
+
+	if (!p->buf)
+		return -1;
 
 	/* user stack buffer first */
 	va_start(ap, msg);
@@ -174,15 +191,18 @@ int sprintbuf(struct printbuf *p, const char *msg, ...)
 
 void printbuf_reset(struct printbuf *p)
 {
+	if (!p->buf)
+		return;
+
 	p->buf[0] = '\0';
 	p->bpos = 0;
 }
 
 void printbuf_free(struct printbuf *p)
 {
-	if (p)
-	{
-		free(p->buf);
+	if (p) {
+		if (p->buf)
+			free(p->buf);
 		free(p);
 	}
 }
