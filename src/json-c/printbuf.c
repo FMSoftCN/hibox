@@ -150,6 +150,19 @@ int printbuf_memset(struct printbuf *pb, int offset, int charvalue, int len)
 	return 0;
 }
 
+int printbuf_shrink(struct printbuf *pb, int len)
+{
+	if (!pb->buf)
+		return -1;
+
+	if (len > pb->bpos)
+		return -1;
+
+    pb->bpos -= len;
+	memset (pb->buf + pb->bpos, '\0', len);
+	return 0;
+}
+
 int sprintbuf(struct printbuf *p, const char *msg, ...)
 {
 	va_list ap;

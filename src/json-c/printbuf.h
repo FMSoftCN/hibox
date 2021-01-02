@@ -108,6 +108,11 @@ JSON_EXPORT int printbuf_memappend(struct printbuf *p, const char *buf, int size
 JSON_EXPORT int printbuf_memset(struct printbuf *pb, int offset, int charvalue, int len);
 
 /**
+ * Shrink the string for a speicified length.
+ */
+JSON_EXPORT int printbuf_shrink(struct printbuf *pb, int len);
+
+/**
  * Formatted print to printbuf.
  *
  * This function is the most expensive of the available functions for appending
