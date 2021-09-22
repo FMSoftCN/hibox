@@ -70,7 +70,11 @@ extern "C" {
 void kvlist_init(struct kvlist *kv, int (*get_len)(struct kvlist *kv, const void *data));
 void kvlist_free(struct kvlist *kv);
 void *kvlist_get(struct kvlist *kv, const char *name);
-bool kvlist_set(struct kvlist *kv, const char *name, const void *data);
+const char *kvlist_set_ex(struct kvlist *kv, const char *name, const void *data);
+static inline bool kvlist_set(struct kvlist *kv, const char *name, const void *data) {
+	return kvlist_set_ex(kv, name, data) != NULL;
+}
+
 bool kvlist_delete(struct kvlist *kv, const char *name);
 
 int kvlist_strlen(struct kvlist *kv, const void *data);
