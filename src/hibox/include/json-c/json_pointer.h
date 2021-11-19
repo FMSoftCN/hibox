@@ -44,7 +44,7 @@ extern "C" {
  *
  * @return negative if an error (or not found), or 0 if succeeded
  */
-JSON_EXPORT int json_pointer_get(struct json_object *obj, const char *path,
+HIBOX_EXPORT int json_pointer_get(struct json_object *obj, const char *path,
                                  struct json_object **res);
 
 /**
@@ -63,7 +63,7 @@ JSON_EXPORT int json_pointer_get(struct json_object *obj, const char *path,
  *
  * @return negative if an error (or not found), or 0 if succeeded
  */
-JSON_EXPORT int json_pointer_getf(struct json_object *obj, struct json_object **res,
+HIBOX_EXPORT int json_pointer_getf(struct json_object *obj, struct json_object **res,
                                   const char *path_fmt, ...);
 
 /**
@@ -95,7 +95,7 @@ JSON_EXPORT int json_pointer_getf(struct json_object *obj, struct json_object **
  *
  * @return negative if an error (or not found), or 0 if succeeded
  */
-JSON_EXPORT int json_pointer_set(struct json_object **obj, const char *path,
+HIBOX_EXPORT int json_pointer_set(struct json_object **obj, const char *path,
                                  struct json_object *value);
 
 /**
@@ -113,7 +113,7 @@ JSON_EXPORT int json_pointer_set(struct json_object **obj, const char *path,
  *
  * @return negative if an error (or not found), or 0 if succeeded
  */
-JSON_EXPORT int json_pointer_setf(struct json_object **obj, struct json_object *value,
+HIBOX_EXPORT int json_pointer_setf(struct json_object **obj, struct json_object *value,
                                   const char *path_fmt, ...);
 
 #ifdef __cplusplus

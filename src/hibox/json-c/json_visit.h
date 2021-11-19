@@ -34,7 +34,7 @@ typedef int(json_c_visit_userfunc)(json_object *jso, int flags, json_object *par
  * Returns <0 if an error occurred during iteration, including if
  *  userfunc returned JSON_C_VISIT_RETURN_ERROR.
  */
-JSON_EXPORT int json_c_visit(json_object *jso, int future_flags, json_c_visit_userfunc *userfunc,
+HIBOX_EXPORT int json_c_visit(json_object *jso, int future_flags, json_c_visit_userfunc *userfunc,
                              void *userarg);
 
 /**

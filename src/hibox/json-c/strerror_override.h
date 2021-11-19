@@ -9,7 +9,7 @@
 #include "config.h"
 #include <errno.h>
 
-#include "json-c/json_object.h" /* for JSON_EXPORT */
+#include "json-c/json_object.h" /* for HIBOX_EXPORT */
 
 #ifdef __cplusplus
 extern "C" {
@@ -17,7 +17,7 @@ extern "C" {
 
 #include <string.h>
 
-JSON_EXPORT char *_json_c_strerror(int errno_in);
+HIBOX_EXPORT char *_json_c_strerror(int errno_in);
 
 #ifndef STRERROR_OVERRIDE_IMPL
 #define strerror _json_c_strerror

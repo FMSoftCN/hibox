@@ -135,8 +135,8 @@ set(CMAKE_POSITION_INDEPENDENT_CODE True)
 #------------------------------------------------------------------------------
 include(GlobalCommon)
 
-SET_PROJECT_VERSION(0 0 1)
-set(HIBOX_API_VERSION 0.0)
+SET_PROJECT_VERSION(1 0 0)
+set(HIBOX_API_VERSION 100)
 
 add_subdirectory(src)
 

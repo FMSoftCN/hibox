@@ -37,7 +37,7 @@ extern "C"
 /* When compiling for windows, we specify a specific calling convention to avoid issues where we are being called from a project with a different default calling convention.  For windows you have 3 define options:
 
 CJSON_HIDE_SYMBOLS - Define this in the case where you don't want to ever dllexport symbols
-CJSON_EXPORT_SYMBOLS - Define this on library build when you want to dllexport symbols (default)
+CHIBOX_EXPORT_SYMBOLS - Define this on library build when you want to dllexport symbols (default)
 CJSON_IMPORT_SYMBOLS - Define this if you want to dllimport symbol
 
 For *nix builds that support visibility attribute, you can define similar behavior by
@@ -48,7 +48,7 @@ or
 -xldscope=hidden (for sun cc)
 to CFLAGS
 
-then using the CJSON_API_VISIBILITY flag to "export" the same symbols the way CJSON_EXPORT_SYMBOLS does
+then using the CJSON_API_VISIBILITY flag to "export" the same symbols the way CHIBOX_EXPORT_SYMBOLS does
 
 */
 
@@ -56,13 +56,13 @@ then using the CJSON_API_VISIBILITY flag to "export" the same symbols the way CJ
 #define CJSON_STDCALL __stdcall
 
 /* export symbols by default, this is necessary for copy pasting the C and header file */
-#if !defined(CJSON_HIDE_SYMBOLS) && !defined(CJSON_IMPORT_SYMBOLS) && !defined(CJSON_EXPORT_SYMBOLS)
-#define CJSON_EXPORT_SYMBOLS
+#if !defined(CJSON_HIDE_SYMBOLS) && !defined(CJSON_IMPORT_SYMBOLS) && !defined(CHIBOX_EXPORT_SYMBOLS)
+#define CHIBOX_EXPORT_SYMBOLS
 #endif
 
 #if defined(CJSON_HIDE_SYMBOLS)
 #define CJSON_PUBLIC(type)   type CJSON_STDCALL
-#elif defined(CJSON_EXPORT_SYMBOLS)
+#elif defined(CHIBOX_EXPORT_SYMBOLS)
 #define CJSON_PUBLIC(type)   __declspec(dllexport) type CJSON_STDCALL
 #elif defined(CJSON_IMPORT_SYMBOLS)
 #define CJSON_PUBLIC(type)   __declspec(dllimport) type CJSON_STDCALL

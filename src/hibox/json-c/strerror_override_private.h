@@ -9,6 +9,6 @@
 #include "json_types.h"
 
 /* Used by tests to get consistent output */
-JSON_EXPORT int _json_c_strerror_enable;
+HIBOX_EXPORT int _json_c_strerror_enable;
 
 #endif

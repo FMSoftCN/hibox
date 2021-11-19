@@ -133,7 +133,7 @@ struct json_tokener
  *
  * See json_tokener_parse_ex() for an example of how to use this.
  */
-JSON_EXPORT size_t json_tokener_get_parse_end(struct json_tokener *tok);
+HIBOX_EXPORT size_t json_tokener_get_parse_end(struct json_tokener *tok);
 
 /**
  * @deprecated Unused in json-c code
@@ -183,7 +183,7 @@ typedef struct json_tokener json_tokener;
  *
  * @return a generic error message is returned if an invalid error value is provided.
  */
-JSON_EXPORT const char *json_tokener_error_desc(enum json_tokener_error jerr);
+HIBOX_EXPORT const char *json_tokener_error_desc(enum json_tokener_error jerr);
 
 /**
  * Retrieve the error caused by the last call to json_tokener_parse_ex(),
@@ -194,31 +194,31 @@ JSON_EXPORT const char *json_tokener_error_desc(enum json_tokener_error jerr);
  *
  * @see json_tokener_error_desc().
  */
-JSON_EXPORT enum json_tokener_error json_tokener_get_error(struct json_tokener *tok);
+HIBOX_EXPORT enum json_tokener_error json_tokener_get_error(struct json_tokener *tok);
 
 /**
  * Allocate a new json_tokener.
  * When done using that to parse objects, free it with json_tokener_free().
  * See json_tokener_parse_ex() for usage details.
  */
-JSON_EXPORT struct json_tokener *json_tokener_new(void);
+HIBOX_EXPORT struct json_tokener *json_tokener_new(void);
 
 /**
  * Allocate a new json_tokener with a custom max nesting depth.
  * @see JSON_TOKENER_DEFAULT_DEPTH
  */
-JSON_EXPORT struct json_tokener *json_tokener_new_ex(int depth);
+HIBOX_EXPORT struct json_tokener *json_tokener_new_ex(int depth);
 
 /**
  * Free a json_tokener previously allocated with json_tokener_new().
  */
-JSON_EXPORT void json_tokener_free(struct json_tokener *tok);
+HIBOX_EXPORT void json_tokener_free(struct json_tokener *tok);
 
 /**
  * Reset the state of a json_tokener, to prepare to parse a 
  * brand new JSON object.
  */
-JSON_EXPORT void json_tokener_reset(struct json_tokener *tok);
+HIBOX_EXPORT void json_tokener_reset(struct json_tokener *tok);
 
 /**
  * Parse a json_object out of the string `str`.
@@ -226,7 +226,7 @@ JSON_EXPORT void json_tokener_reset(struct json_tokener *tok);
  * If you need more control over how the parsing occurs,
  * see json_tokener_parse_ex().
  */
-JSON_EXPORT struct json_object *json_tokener_parse(const char *str);
+HIBOX_EXPORT struct json_object *json_tokener_parse(const char *str);
 
 /**
  * Parser a json_object out of the string `str`, but if it fails
@@ -234,13 +234,13 @@ JSON_EXPORT struct json_object *json_tokener_parse(const char *str);
  * @see json_tokener_parse()
  * @see json_tokener_parse_ex()
  */
-JSON_EXPORT struct json_object *json_tokener_parse_verbose(const char *str,
+HIBOX_EXPORT struct json_object *json_tokener_parse_verbose(const char *str,
                                                            enum json_tokener_error *error);
 
 /**
  * Set flags that control how parsing will be done.
  */
-JSON_EXPORT void json_tokener_set_flags(struct json_tokener *tok, int flags);
+HIBOX_EXPORT void json_tokener_set_flags(struct json_tokener *tok, int flags);
 
 /**
  * Parse a string and return a non-NULL json_object if a valid JSON value
@@ -318,7 +318,7 @@ if (json_tokener_get_parse_end(tok) < stringlen)
  * @param str an string with any valid JSON expression, or portion of.  This does not need to be null terminated.
  * @param len the length of str
  */
-JSON_EXPORT struct json_object *json_tokener_parse_ex(struct json_tokener *tok, const char *str,
+HIBOX_EXPORT struct json_object *json_tokener_parse_ex(struct json_tokener *tok, const char *str,
                                                       int len);
 
 #ifdef __cplusplus

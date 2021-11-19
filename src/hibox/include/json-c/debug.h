@@ -23,22 +23,22 @@
 extern "C" {
 #endif
 
-#ifndef JSON_EXPORT
+#ifndef HIBOX_EXPORT
 #if defined(_MSC_VER)
-#define JSON_EXPORT __declspec(dllexport)
+#define HIBOX_EXPORT __declspec(dllexport)
 #else
-#define JSON_EXPORT extern
+#define HIBOX_EXPORT extern
 #endif
 #endif
 
-JSON_EXPORT void mc_set_debug(int debug);
-JSON_EXPORT int mc_get_debug(void);
+HIBOX_EXPORT void mc_set_debug(int debug);
+HIBOX_EXPORT int mc_get_debug(void);
 
-JSON_EXPORT void mc_set_syslog(int syslog);
+HIBOX_EXPORT void mc_set_syslog(int syslog);
 
-JSON_EXPORT void mc_debug(const char *msg, ...);
-JSON_EXPORT void mc_error(const char *msg, ...);
-JSON_EXPORT void mc_info(const char *msg, ...);
+HIBOX_EXPORT void mc_debug(const char *msg, ...);
+HIBOX_EXPORT void mc_error(const char *msg, ...);
+HIBOX_EXPORT void mc_info(const char *msg, ...);
 
 #ifndef __STRING
 #define __STRING(x) #x

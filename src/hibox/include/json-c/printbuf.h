@@ -23,11 +23,11 @@
 #ifndef _printbuf_h_
 #define _printbuf_h_
 
-#ifndef JSON_EXPORT
+#ifndef HIBOX_EXPORT
 #if defined(_MSC_VER)
-#define JSON_EXPORT __declspec(dllexport)
+#define HIBOX_EXPORT __declspec(dllexport)
 #else
-#define JSON_EXPORT extern
+#define HIBOX_EXPORT extern
 #endif
 #endif
 
@@ -44,9 +44,9 @@ struct printbuf
 typedef struct printbuf printbuf;
 
 /* VW: add for printbuf defined in stack */
-JSON_EXPORT int printbuf_init(struct printbuf *pb);
+HIBOX_EXPORT int printbuf_init(struct printbuf *pb);
 
-JSON_EXPORT struct printbuf *printbuf_new(void);
+HIBOX_EXPORT struct printbuf *printbuf_new(void);
 
 /* As an optimization, printbuf_memappend_fast() is defined as a macro
  * that handles copying data if the buffer is large enough; otherwise
@@ -56,7 +56,7 @@ JSON_EXPORT struct printbuf *printbuf_new(void);
  * Your code should not use printbuf_memappend() directly unless it
  * checks the return code. Use printbuf_memappend_fast() instead.
  */
-JSON_EXPORT int printbuf_memappend(struct printbuf *p, const char *buf, int size);
+HIBOX_EXPORT int printbuf_memappend(struct printbuf *p, const char *buf, int size);
 
 #define printbuf_memappend_fast(p, bufptr, bufsize)                  \
 	do                                                           \
@@ -105,12 +105,12 @@ JSON_EXPORT int printbuf_memappend(struct printbuf *p, const char *buf, int size
  *
  * If offset is -1, this starts at the end of the current data in the buffer.
  */
-JSON_EXPORT int printbuf_memset(struct printbuf *pb, int offset, int charvalue, int len);
+HIBOX_EXPORT int printbuf_memset(struct printbuf *pb, int offset, int charvalue, int len);
 
 /**
  * Shrink the string for a speicified length.
  */
-JSON_EXPORT int printbuf_shrink(struct printbuf *pb, int len);
+HIBOX_EXPORT int printbuf_shrink(struct printbuf *pb, int len);
 
 /**
  * Formatted print to printbuf.
@@ -126,11 +126,11 @@ JSON_EXPORT int printbuf_shrink(struct printbuf *pb, int len);
  *   printbuf_memappend()
  *   printbuf_strappend()
  */
-JSON_EXPORT int sprintbuf(struct printbuf *p, const char *msg, ...);
+HIBOX_EXPORT int sprintbuf(struct printbuf *p, const char *msg, ...);
 
-JSON_EXPORT void printbuf_reset(struct printbuf *p);
+HIBOX_EXPORT void printbuf_reset(struct printbuf *p);
 
-JSON_EXPORT void printbuf_free(struct printbuf *p);
+HIBOX_EXPORT void printbuf_free(struct printbuf *p);
 
 #ifdef __cplusplus
 }

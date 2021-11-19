@@ -17,11 +17,11 @@
 extern "C" {
 #endif
 
-#ifndef JSON_EXPORT
+#ifndef HIBOX_EXPORT
 #if defined(_MSC_VER)
-#define JSON_EXPORT __declspec(dllexport)
+#define HIBOX_EXPORT __declspec(dllexport)
 #else
-#define JSON_EXPORT extern
+#define HIBOX_EXPORT extern
 #endif
 #endif
 

@@ -5,15 +5,14 @@
  * it under the terms of the MIT license. See COPYING for details.
  */
 #include "config.h"
-
-#include "json_c_version.h"
+#include "hibox_version.h"
 
 const char *json_c_version(void)
 {
-	return JSON_C_VERSION;
+    return HIBOX_VERSION;
 }
 
 int json_c_version_num(void)
 {
-	return JSON_C_VERSION_NUM;
+    return HIBOX_API_VERSION;
 }
