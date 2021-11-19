@@ -1,0 +1,13 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+includedir=${prefix}/@includedir@
+libdir=${prefix}/@libdir@
+
+Name: HiBox
+Description: The C common utilities and helpers.
+URL: https://hybridos.fmsoft.cn
+Version: @PROJECT_VERSION@
+Requires.private: @HIBOX_PKGCONFIG_REQUIRES@
+Libs: -L${libdir} -lhibox
+Libs.private: @HIBOX_PKGCONFIG_LIBS@
+Cflags: -I${includedir} @HIBOX_PKGCONFIG_CFLAGS@
