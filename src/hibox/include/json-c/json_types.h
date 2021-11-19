@@ -17,14 +17,6 @@
 extern "C" {
 #endif
 
-#ifndef HIBOX_EXPORT
-#if defined(_MSC_VER)
-#define HIBOX_EXPORT __declspec(dllexport)
-#else
-#define HIBOX_EXPORT extern
-#endif
-#endif
-
 struct printbuf;
 
 /**

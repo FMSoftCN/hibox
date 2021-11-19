@@ -28,7 +28,7 @@
 #include <sys/param.h>
 #endif /* HAVE_SYS_PARAM_H */
 
-#include "json-c/debug.h"
+#include "debug.h"
 
 static int _syslog = 0;
 static int _debug = 0;

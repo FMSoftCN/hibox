@@ -14,12 +14,12 @@
 #include <stddef.h>
 
 #include "arraylist.h"
-#include "json-c/debug.h"
 #include "json-c/json_object.h"
 #include "json-c/json_object_iterator.h"
-#include "json-c/linkhash.h"
 #include "json-c/json_c_version.h"
+#include "json-c/linkhash.h"
 
+#include "debug.h"
 #include "json_object_private.h"
 
 /**

@@ -25,13 +25,13 @@
 #include <string.h>
 
 #include "arraylist.h"
-#include "json-c/debug.h"
+#include "printbuf.h"
 #include "json-c/json_object.h"
 #include "json-c/json_util.h"
-#include "json-c/linkhash.h"
-#include "json-c/printbuf.h"
 #include "json-c/json_inttypes.h"
+#include "json-c/linkhash.h"
 
+#include "debug.h"
 #include "json_object_private.h"
 #include "math_compat.h"
 #include "snprintf_compat.h"

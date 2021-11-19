@@ -23,9 +23,9 @@
 #define JSON_C_CONST_FUNCTION(func) func
 #endif
 
+#include "printbuf.h"
 #include "json-c/json_inttypes.h"
 #include "json-c/json_types.h"
-#include "json-c/printbuf.h"
 
 #include <stddef.h>
 

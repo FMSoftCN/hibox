@@ -26,8 +26,7 @@
 #error Not enough var arg support!
 #endif /* HAVE_STDARG_H */
 
-#include "json-c/debug.h"
-#include "json-c/printbuf.h"
+#include "printbuf.h"
 
 #include "snprintf_compat.h"
 #include "vasprintf_compat.h"

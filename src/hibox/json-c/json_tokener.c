@@ -25,14 +25,16 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "json-c/debug.h"
+#include "strdup_compat.h"
+#include "printbuf.h"
+
 #include "json-c/json_inttypes.h"
 #include "json-c/json_object.h"
 #include "json-c/json_tokener.h"
 #include "json-c/json_util.h"
-#include "json-c/printbuf.h"
+
+#include "debug.h"
 #include "json_object_private.h"
-#include "strdup_compat.h"
 
 #ifdef HAVE_LOCALE_H
 #include <locale.h>
