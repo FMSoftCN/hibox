@@ -1,8 +1,6 @@
 include(GNUInstallDirs)
 
-HIBOX_OPTION_BEGIN()
-
-CALCULATE_LIBRARY_VERSIONS_FROM_LIBTOOL_TRIPLE(HIBOX 0 0 0)
+CALCULATE_LIBRARY_VERSIONS_FROM_LIBTOOL_TRIPLE(HIBOX 1 0 0)
 
 # These are shared variables, but we special case their definition so that we can use the
 # CMAKE_INSTALL_* variables that are populated by the GNUInstallDirs macro.
@@ -14,6 +12,8 @@ set(HIBOX_HEADER_INSTALL_DIR "${CMAKE_INSTALL_INCLUDEDIR}/hibox" CACHE PATH "Abs
 
 add_definitions(-DBUILDING_LINUX__=1)
 add_definitions(-DHIBOX_API_VERSION_STRING="${HIBOX_API_VERSION}")
+
+HIBOX_OPTION_BEGIN()
 
 # Public options specific to the HybridOS port. Do not add any options here unless
 # there is a strong reason we should support changing the value of the option,

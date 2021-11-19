@@ -11,15 +11,16 @@ set(HiBox_PRIVATE_INCLUDE_DIRECTORIES
     "${CMAKE_BINARY_DIR}"
     "${HIBOX_DIR}"
     "${HIBOX_DIR}/include"
+    "${HIBOX_DIR}/include/private"
     "${HiBox_DERIVED_SOURCES_DIR}"
     "${FORWARDING_HEADERS_DIR}"
-    "${CMAKE_BINARY_DIR}/src/hibox"
 )
 
 # TODO: List the headers should be installed to system `hibox/` here.
 set(HiBox_INSTALLED_HEADERS
     "${HiBox_DERIVED_SOURCES_DIR}/hibox_version.h"
     "${HiBox_DERIVED_SOURCES_DIR}/hibox_features.h"
+    "${HIBOX_DIR}/include/arraylist.h"
     "${HIBOX_DIR}/include/list.h"
     "${HIBOX_DIR}/include/kvlist.h"
     "${HIBOX_DIR}/include/avl-cmp.h"
@@ -48,13 +49,12 @@ set(HiBox_INSTALLED_HEADERS
 
 # TODO: List the headers should be installed to system `hibox/` here.
 set(HiBox_JSONC_INSTALLED_HEADERS
-    "${HIBOX_DIR}/include/json-c/arraylist.h"
-    "${HIBOX_DIR}/include/json-c/debug.h"
     "${HIBOX_DIR}/include/json-c/json_c_version.h"
     "${HIBOX_DIR}/include/json-c/json_object.h"
     "${HIBOX_DIR}/include/json-c/json_object_iterator.h"
     "${HIBOX_DIR}/include/json-c/json_pointer.h"
     "${HIBOX_DIR}/include/json-c/json_tokener.h"
+    "${HIBOX_DIR}/include/json-c/json_types.h"
     "${HIBOX_DIR}/include/json-c/json_util.h"
     "${HIBOX_DIR}/include/json-c/linkhash.h"
 )
